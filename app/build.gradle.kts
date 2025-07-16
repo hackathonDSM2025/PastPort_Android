@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.hackaton.pastport"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.hackaton.pastport"
