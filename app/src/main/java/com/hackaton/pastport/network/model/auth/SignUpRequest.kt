@@ -1,6 +1,6 @@
 package com.hackaton.pastport.network.model.auth
 
 data class SignUpRequest(
-    val id: String,
+    val username: String,
     val password: String
 )
