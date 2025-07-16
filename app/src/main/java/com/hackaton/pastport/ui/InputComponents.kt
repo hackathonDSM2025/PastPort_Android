@@ -1,13 +1,12 @@
 package com.hackaton.pastport.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
@@ -23,7 +22,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
-import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
@@ -33,10 +32,12 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.hackaton.pastport.R
+import com.hackaton.pastport.ui.theme.Black
 import com.hackaton.pastport.ui.theme.Gray300
 import com.hackaton.pastport.ui.theme.Gray50
 import com.hackaton.pastport.ui.theme.Main
 import com.hackaton.pastport.ui.theme.PastPortFontStyle
+import com.hackaton.pastport.ui.theme.Red
 import com.hackaton.pastport.ui.utils.noRippleClickable
 
 @Composable
@@ -51,7 +52,6 @@ private fun PastPortBasicTextField(
     onValueChange: (String) -> Unit
 ) {
     val focusManager = LocalFocusManager.current
-    var isFocused by remember { mutableStateOf(false) }
 
     Box(
         modifier = modifier
@@ -64,10 +64,9 @@ private fun PastPortBasicTextField(
             .padding(
                 start = 16.dp,
                 end = 16.dp,
-                top = 10.dp,
-                bottom = 10.dp
+                top = 12.dp,
+                bottom = 12.dp
             )
-            .onFocusChanged { isFocused = it.isFocused }
     ) {
         BasicTextField(
             modifier = modifier
@@ -88,13 +87,13 @@ private fun PastPortBasicTextField(
                 onNext = { focusManager.moveFocus(FocusDirection.Next) }
             ),
             visualTransformation = visualTransformation,
-            textStyle = PastPortFontStyle.medium16,
+            textStyle = PastPortFontStyle.medium14,
             cursorBrush = SolidColor(Main),
             decorationBox = { innerTextField ->
                 if (input.isEmpty()) {
                     Text(
                         text = hint,
-                        style = PastPortFontStyle.medium16,
+                        style = PastPortFontStyle.medium14,
                         color = Gray300
                     )
                 }
@@ -102,7 +101,7 @@ private fun PastPortBasicTextField(
             }
         )
         trailingIcon?.let {
-            Box(modifier = modifier.align(Alignment.CenterEnd)) { it() }
+            Box(modifier = Modifier.align(Alignment.CenterEnd)) { it() }
         }
     }
 }
@@ -145,8 +144,7 @@ private fun PastPortPasswordTextField(
         visualTransformation = if (isShowPassword) VisualTransformation.None else PasswordVisualTransformation(),
         trailingIcon = {
             Icon(
-                modifier = modifier
-                    .padding(4.dp)
+                modifier = Modifier
                     .size(20.dp)
                     .noRippleClickable {
                         isShowPassword = !isShowPassword
@@ -159,18 +157,32 @@ private fun PastPortPasswordTextField(
 }
 
 @Composable
-private fun InputLabel(
+private fun PastPortBasicInput(
     modifier: Modifier = Modifier,
-    label: String
+    label: String,
+    errorMessage: String = "",
+    errorMessageColor: Color = Black,
+    textField: @Composable () -> Unit
 ) {
-    Text(
-        modifier = modifier
-            .padding(
-                bottom = 3.dp
-            ),
-        text = label,
-        style = PastPortFontStyle.medium16
-    )
+    Column (
+        verticalArrangement = Arrangement.spacedBy(2.dp)
+    ) {
+        Text(
+            text = label,
+            style = PastPortFontStyle.medium14
+        )
+        textField()
+        Text(
+            modifier = modifier
+                .padding(
+                    start = 4.dp,
+                    bottom = 4.dp
+                ),
+            text = errorMessage,
+            style = PastPortFontStyle.medium10,
+            color = errorMessageColor
+        )
+    }
 }
 
 @Composable
@@ -180,20 +192,25 @@ fun PastPortInput(
     input: String,
     hint: String,
     imeAction: ImeAction,
+    errorMessage: String = "",
+    errorMessageColor: Color = Black,
     onValueChange: (String) -> Unit
 ) {
-    Column (
+    PastPortBasicInput(
         modifier = modifier,
-        horizontalAlignment = Alignment.Start
-    ) {
-        InputLabel(label = label)
-        PastPortTextField(
-            input = input,
-            hint = hint,
-            imeAction = imeAction,
-            onValueChange = onValueChange
-        )
-    }
+        label = label,
+        errorMessage = errorMessage,
+        errorMessageColor = errorMessageColor,
+        textField = {
+            PastPortTextField(
+                modifier = modifier,
+                input = input,
+                hint = hint,
+                imeAction = imeAction,
+                onValueChange = onValueChange
+            )
+        }
+    )
 }
 
 @Composable
@@ -203,18 +220,22 @@ fun PastPortPasswordInput(
     input: String,
     hint: String,
     imeAction: ImeAction,
+    errorMessage: String = "",
     onValueChange: (String) -> Unit
 ) {
-    Column (
+    PastPortBasicInput(
         modifier = modifier,
-        horizontalAlignment = Alignment.Start
-    ) {
-        InputLabel(label = label)
-        PastPortPasswordTextField(
-            input = input,
-            hint = hint,
-            imeAction = imeAction,
-            onValueChange = onValueChange
-        )
-    }
+        label = label,
+        errorMessage = errorMessage,
+        errorMessageColor = Red,
+        textField = {
+            PastPortPasswordTextField(
+                modifier = modifier,
+                input = input,
+                hint = hint,
+                imeAction = imeAction,
+                onValueChange = onValueChange
+            )
+        }
+    )
 }

@@ -67,6 +67,7 @@ object PastPortFontStyle {
         color = defaultTextColor
     )
 
+    val medium10 = createTextStyle(FontWeight.Medium, 10)
     val medium14 = createTextStyle(FontWeight.Medium, 14)
     val medium16 = createTextStyle(FontWeight.Medium, 16)
 

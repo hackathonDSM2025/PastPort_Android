@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -62,8 +63,8 @@ fun InputTextButton(
 ) {
     Box(
         modifier = modifier
-            .width(70.dp)
-            .height(40.dp)
+            .width(67.dp)
+            .height(36.dp)
             .background(
                 color = Main,
                 shape = RoundedCornerShape(8.dp)
@@ -76,7 +77,9 @@ fun InputTextButton(
     ) {
         if (loading) {
             CircularProgressIndicator(
-                modifier = modifier.align(Alignment.Center)
+                modifier = modifier
+                    .align(Alignment.Center)
+                    .size(26.dp)
             )
         } else {
             Text(

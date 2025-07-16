@@ -1,6 +1,5 @@
 package com.hackaton.pastport.ui
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -26,13 +25,13 @@ fun AuthTitle(
             .wrapContentHeight(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Spacer(modifier = modifier.height(120.dp))
+        Spacer(modifier = modifier.height(100.dp))
         Text(
             text = title,
             style = PastPortFontStyle.bold36,
             color = Main,
             textAlign = TextAlign.Center
         )
-        Spacer(modifier = modifier.height(60.dp))
+        Spacer(modifier = modifier.height(50.dp))
     }
 }
