@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">PastPort</string>
-    <string name="none"/>
+    <string name="none" />
 
     <string name="signup">회원가입</string>
     <string name="login">로그인</string>
@@ -12,7 +12,7 @@
     <string name="auth_id_hint">아이디를 입력해주세요</string>
     <string name="auth_pw_hint">비밀번호를 입력해주세요</string>
     <string name="auth_check_pw_hint">비밀번호를 다시 입력해주세요</string>
-    
+
     <string name="signup_check_duplicate">중복확인</string>
     <string name="signup_can_use">사용할 수 있는 아이디입니다</string>
     <string name="signup_cant_use">사용할 수 없는 아이디입니다</string>
@@ -22,9 +22,18 @@
 
     <string name="login_is_not_account">계정이 없으신가요?</string>
     <string name="login_fail">로그인에 실패하였습니다</string>
-    
+
     <string name="home">Home</string>
     <string name="map">Map</string>
     <string name="qr">QR Scan</string>
     <string name="mypage">My Page</string>
+
+    <string name="home_degree">진척도</string>
+    <string name="home_welcome_title">Pastport에 오신 것을 환영합니다!</string>
+    <string name="home_welcome_content">Pastport는 한국의 역사를 재미있게 배울 수 있는 앱입니다.\n한국에 있는 다양한 역사들을 찾아가 큐알 코드를 찍어보세요!\nPastport가 여러분의 역사 탐험을 도와줄 거예요.\n많은 역사를 찾아다니며 배지를 수집하고, 지도를 채워나가요!</string>
+    <string name="home_my_activity">나의 활동 요약</string>
+    <string name="home_my_activity_visited">방문</string>
+    <string name="home_my_activity_medal">메달</string>
+    <string name="home_my_activity_report">소감문</string>
+    <string name="home_late_medal">최근 획득한 메달</string>
 </resources>
