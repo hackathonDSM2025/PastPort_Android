@@ -37,4 +37,8 @@
     <string name="home_my_activity_medal">메달</string>
     <string name="home_my_activity_report">소감문</string>
     <string name="home_late_medal">최근 획득한 메달</string>
+
+    <string name="mypage_my_medal">나의 메달</string>
+    <string name="mypage_my_report">나의 후기</string>
+    <string name="mypage_language">언어 선택</string>
 </resources>
