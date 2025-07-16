@@ -70,12 +70,14 @@ fun HomeScreen(
         viewModel.getInfo()
     }
 
-    if (isLoading) {
-        CircularProgressIndicator()
-    } else {
-        Box(
-            modifier = modifier.fillMaxSize()
-        ) {
+    Box(
+        modifier = modifier.fillMaxSize()
+    ) {
+        if (isLoading) {
+            CircularProgressIndicator(
+                modifier = modifier.align(Alignment.Center)
+            )
+        } else {
             Image(
                 modifier = modifier
                     .align(Alignment.Center)
@@ -174,7 +176,7 @@ private fun HomeProgress(
 private fun WelcomeCard(
     modifier: Modifier = Modifier
 ) {
-    Column (
+    Column(
         modifier = modifier
             .padding(
                 start = 20.dp,
@@ -339,7 +341,12 @@ private fun SpeechBubble(
                 lineTo(width - cornerRadius, 0f)
                 quadraticBezierTo(width, 0f, width, cornerRadius)
                 lineTo(width, height - tailHeight - cornerRadius)
-                quadraticBezierTo(width, height - tailHeight, width - cornerRadius, height - tailHeight)
+                quadraticBezierTo(
+                    width,
+                    height - tailHeight,
+                    width - cornerRadius,
+                    height - tailHeight
+                )
 
                 lineTo(width / 2 + tailWidth / 2, height - tailHeight)
                 lineTo(width / 2f, height)
@@ -386,7 +393,7 @@ private fun HaeTaeSpeech(
     modifier: Modifier = Modifier,
     text: String
 ) {
-    Column (
+    Column(
         modifier = modifier.fillMaxWidth()
     ) {
         SpeechBubble(
@@ -463,7 +470,7 @@ private fun LateMedal(
 }
 
 private fun getMedalResource(name: String): Int? {
-    return when(name) {
+    return when (name) {
         "경복궁" -> R.drawable.medal_gyeongbok
         "불국사" -> R.drawable.medal_bulguk
         "고인돌" -> R.drawable.medal_dolmen
