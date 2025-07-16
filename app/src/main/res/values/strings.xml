@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">PastPort</string>
+    <string name="none"/>
+
+    <string name="signup">회원가입</string>
+
+    <string name="auth_id">아이디</string>
+    <string name="auth_pw">비밀번호</string>
+    <string name="auth_check_pw">비밀번호 확인</string>
+
+    <string name="auth_id_hint">아이디를 입력해주세요</string>
+    <string name="auth_pw_hint">비밀번호를 입력해주세요</string>
+    <string name="auth_check_pw_hint">비밀번호를 다시 입력해주세요</string>
+    
+    <string name="signup_check_duplicate">중복확인</string>
+    <string name="signup_can_use">사용할 수 있는 아이디입니다</string>
+    <string name="signup_cant_use">사용할 수 없는 아이디입니다</string>
+    <string name="signup_please_check">아이디 중복확인을 해주세요</string>
+
+    <string name="signup_fail">회원가입을 실패하였습니다</string>
 </resources>
