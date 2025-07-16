@@ -1,4 +1,4 @@
-package com.hackaton.pastport.home.viewmodel
+package com.hackaton.pastport.main.home.viewmodel
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -6,7 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hackaton.pastport.home.repository.HomeRepository
+import com.hackaton.pastport.main.home.repository.HomeRepository
 import com.hackaton.pastport.network.model.user.BadgeData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async

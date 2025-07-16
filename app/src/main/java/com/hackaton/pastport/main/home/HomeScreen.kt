@@ -1,4 +1,4 @@
-package com.hackaton.pastport.home
+package com.hackaton.pastport.main.home
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
@@ -38,7 +38,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.cheonjaeung.compose.grid.SimpleGridCells
 import com.cheonjaeung.compose.grid.VerticalGrid
 import com.hackaton.pastport.R
-import com.hackaton.pastport.home.viewmodel.HomeViewModel
+import com.hackaton.pastport.main.home.viewmodel.HomeViewModel
 import com.hackaton.pastport.network.model.user.BadgeData
 import com.hackaton.pastport.ui.PastPortTopBar
 import com.hackaton.pastport.ui.theme.Gray200
@@ -81,7 +81,7 @@ fun HomeScreen(
             Image(
                 modifier = modifier
                     .align(Alignment.Center)
-                    .fillMaxSize(),
+                   .fillMaxSize(),
                 painter = painterResource(R.drawable.home_background),
                 contentDescription = null,
                 contentScale = ContentScale.FillHeight
