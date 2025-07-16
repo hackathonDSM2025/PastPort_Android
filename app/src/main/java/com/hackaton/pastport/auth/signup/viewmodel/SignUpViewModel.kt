@@ -11,9 +11,11 @@ import com.hackaton.pastport.auth.signup.repository.SignUpRepository
 import com.hackaton.pastport.ui.theme.Black
 import com.hackaton.pastport.ui.theme.Main
 import com.hackaton.pastport.ui.theme.Red
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class SignUpViewModel @Inject constructor(
     private val repository: SignUpRepository
 ) : ViewModel() {
@@ -26,19 +28,27 @@ class SignUpViewModel @Inject constructor(
     var isSignUpSuccess by mutableStateOf<Boolean?>(null)
 
     var idErrorMessage by mutableIntStateOf(R.string.none)
+    var pwCheckErrorMessage by mutableIntStateOf(R.string.none)
     var errorMessageColor by mutableStateOf(Black)
 
     fun onIdChange(input: String) {
         id = input
         if (isDuplicateIdSuccess != null) {
             isDuplicateIdSuccess = null
+            idErrorMessage = R.string.none
         }
     }
     fun onPasswordChange(input: String) {
         password = input
+        if (pwCheckErrorMessage != R.string.none) {
+            pwCheckErrorMessage = R.string.none
+        }
     }
     fun onCheckPasswordChange(input: String) {
         checkPassword = input
+        if (pwCheckErrorMessage != R.string.none) {
+            pwCheckErrorMessage = R.string.none
+        }
     }
 
     fun onDuplicateIdClick() {
@@ -46,9 +56,15 @@ class SignUpViewModel @Inject constructor(
             isLoading = true
             val result = repository.duplicateId(id)
             result.onSuccess {
-                isDuplicateIdSuccess = true
-                idErrorMessage = R.string.signup_can_use
-                errorMessageColor = Main
+                if (it.data.available) {
+                    isDuplicateIdSuccess = true
+                    idErrorMessage = R.string.signup_can_use
+                    errorMessageColor = Main
+                } else {
+                    isDuplicateIdSuccess = false
+                    idErrorMessage = R.string.signup_cant_use
+                    errorMessageColor = Red
+                }
             }.onFailure {
                 isDuplicateIdSuccess = false
                 idErrorMessage = R.string.signup_cant_use
@@ -60,9 +76,13 @@ class SignUpViewModel @Inject constructor(
 
     fun onSignUpClick() {
         if (isDuplicateIdSuccess != true) {
-            idErrorMessage = R.string.signup_check_duplicate
+            idErrorMessage = R.string.signup_please_check
             errorMessageColor = Red
             return
+        }
+
+        if (password != checkPassword) {
+            pwCheckErrorMessage = R.string.signup_not_same_pw
         }
 
         viewModelScope.launch {

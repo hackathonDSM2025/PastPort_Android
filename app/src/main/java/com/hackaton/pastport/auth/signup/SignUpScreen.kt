@@ -7,8 +7,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -26,6 +28,7 @@ import com.hackaton.pastport.R
 import com.hackaton.pastport.auth.signup.viewmodel.SignUpViewModel
 import com.hackaton.pastport.ui.AuthTitle
 import com.hackaton.pastport.ui.InputTextButton
+import com.hackaton.pastport.ui.PastPortButton
 import com.hackaton.pastport.ui.PastPortInput
 import com.hackaton.pastport.ui.PastPortPasswordInput
 import com.hackaton.pastport.ui.utils.addFocusCleaner
@@ -48,6 +51,7 @@ fun SignUpScreen(
     val isSignUpSuccess = viewModel.isSignUpSuccess
 
     val idErrorMessage = viewModel.idErrorMessage
+    val pwCheckErrorMessage = viewModel.pwCheckErrorMessage
     val errorMessageColor = viewModel.errorMessageColor
 
     if (isSignUpSuccess == true) {
@@ -76,11 +80,16 @@ fun SignUpScreen(
         Column(
             modifier = modifier
                 .align(Alignment.TopCenter)
+                .padding(
+                    start = 40.dp,
+                    end = 40.dp
+                )
                 .fillMaxSize()
                 .addFocusCleaner(focusManager)
         ) {
-            AuthTitle(title = stringResource(R.string.signup))
+            AuthTitle(title = "Sign Up")
             SignUpIdInput(
+                modifier = modifier,
                 id = id,
                 idErrorMessage = stringResource(idErrorMessage),
                 errorMessageColor = errorMessageColor,
@@ -95,12 +104,7 @@ fun SignUpScreen(
                 }
             )
             PastPortPasswordInput(
-                modifier = modifier
-                    .padding(
-                        start = 40.dp,
-                        end = 40.dp
-                    )
-                    .fillMaxWidth(),
+                modifier = modifier.fillMaxWidth(),
                 label = stringResource(R.string.auth_pw),
                 input = password,
                 hint = stringResource(R.string.auth_pw_hint),
@@ -115,8 +119,18 @@ fun SignUpScreen(
                 input = checkPassword,
                 hint = stringResource(R.string.auth_check_pw_hint),
                 imeAction = ImeAction.Done,
+                errorMessage = stringResource(pwCheckErrorMessage),
                 onValueChange = { input ->
                     viewModel.onCheckPasswordChange(input)
+                }
+            )
+            Spacer(modifier.height(26.dp))
+            PastPortButton(
+                modifier = modifier.fillMaxWidth(),
+                text = stringResource(R.string.signup),
+                loading = isLoading,
+                onClick = {
+                    viewModel.onSignUpClick()
                 }
             )
         }
@@ -134,14 +148,9 @@ fun SignUpIdInput(
     onValueChange: (String) -> Unit
 ) {
     Row (
-        modifier = modifier
-            .padding(
-                start = 40.dp,
-                end = 40.dp
-            )
-            .fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
         PastPortInput(
             modifier = modifier.fillMaxWidth(0.75f),
