@@ -83,6 +83,7 @@ class SignUpViewModel @Inject constructor(
 
         if (password != checkPassword) {
             pwCheckErrorMessage = R.string.signup_not_same_pw
+            return
         }
 
         viewModelScope.launch {
