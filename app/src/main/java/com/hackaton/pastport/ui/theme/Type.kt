@@ -71,6 +71,7 @@ object PastPortFontStyle {
     val medium14 = createTextStyle(FontWeight.Medium, 14)
     val medium16 = createTextStyle(FontWeight.Medium, 16)
 
+    val bold15 = createTextStyle(FontWeight.Bold, 15)
     val bold16 = createTextStyle(FontWeight.Bold, 16)
     val bold36 = createTextStyle(FontWeight.Bold, 36)
 }

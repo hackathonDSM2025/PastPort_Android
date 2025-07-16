@@ -65,8 +65,7 @@ fun SignUpScreen(
     }
 
     Box (
-        modifier = modifier
-            .fillMaxSize()
+        modifier = modifier.fillMaxSize()
     ) {
         Image(
             modifier = modifier

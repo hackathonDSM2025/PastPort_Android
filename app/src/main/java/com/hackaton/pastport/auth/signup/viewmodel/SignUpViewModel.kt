@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hackaton.pastport.R
 import com.hackaton.pastport.auth.signup.repository.SignUpRepository
+import com.hackaton.pastport.network.model.auth.DuplicateIdRequest
+import com.hackaton.pastport.network.model.auth.SignRequest
 import com.hackaton.pastport.ui.theme.Black
 import com.hackaton.pastport.ui.theme.Main
 import com.hackaton.pastport.ui.theme.Red
@@ -54,7 +56,7 @@ class SignUpViewModel @Inject constructor(
     fun onDuplicateIdClick() {
         viewModelScope.launch {
             isLoading = true
-            val result = repository.duplicateId(id)
+            val result = repository.duplicateId(DuplicateIdRequest(id))
             result.onSuccess {
                 if (it.data.available) {
                     isDuplicateIdSuccess = true
@@ -88,7 +90,7 @@ class SignUpViewModel @Inject constructor(
 
         viewModelScope.launch {
             isLoading = true
-            val result = repository.signUp(id, password)
+            val result = repository.signUp(SignRequest(id, password))
             result.onSuccess {
                 isSignUpSuccess = true
             }.onFailure {
