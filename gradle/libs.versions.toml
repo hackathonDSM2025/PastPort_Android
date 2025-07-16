@@ -1,6 +1,7 @@
 [versions]
 agp = "8.6.1"
 converterGson = "3.0.0"
+grid = "2.3.2"
 hiltAndroid = "2.56.2"
 hiltAndroidCompiler = "2.56.2"
 hiltNavigation = "1.2.0"
@@ -21,6 +22,7 @@ androidx-hilt-navigation = { module = "androidx.hilt:hilt-navigation", version.r
 androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigation" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
+grid = { module = "com.cheonjaeung.compose.grid:grid", version.ref = "grid" }
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroidCompiler" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }

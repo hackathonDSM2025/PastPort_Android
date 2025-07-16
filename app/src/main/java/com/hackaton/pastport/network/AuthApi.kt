@@ -8,13 +8,15 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
 
+private const val AUTH = "/api/auth"
+
 interface AuthApi {
-    @POST("/check-username")
+    @POST("$AUTH/check-username")
     suspend fun duplicateId(@Body request: DuplicateIdRequest): Response<DuplicateIdResponse>
 
-    @POST("/register")
+    @POST("$AUTH/register")
     suspend fun signUp(@Body request: SignRequest): Response<SignResponse>
 
-    @POST("/login")
+    @POST("$AUTH/login")
     suspend fun login(@Body request: SignRequest): Response<SignResponse>
 }
