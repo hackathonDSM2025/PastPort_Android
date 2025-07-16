@@ -3,6 +3,7 @@
     <string name="none"/>
 
     <string name="signup">회원가입</string>
+    <string name="login">로그인</string>
 
     <string name="auth_id">아이디</string>
     <string name="auth_pw">비밀번호</string>
@@ -17,6 +18,8 @@
     <string name="signup_cant_use">사용할 수 없는 아이디입니다</string>
     <string name="signup_please_check">아이디 중복확인을 해주세요</string>
     <string name="signup_not_same_pw">비밀번호가 일치하지 않습니다</string>
+    <string name="signup_fail">회원가입에 실패하였습니다</string>
 
-    <string name="signup_fail">회원가입을 실패하였습니다</string>
+    <string name="login_is_not_account">계정이 없으신가요?</string>
+    <string name="login_fail">로그인에 실패하였습니다</string>
 </resources>
