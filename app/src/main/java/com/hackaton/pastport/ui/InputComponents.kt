@@ -37,6 +37,7 @@ import com.hackaton.pastport.ui.theme.Gray300
 import com.hackaton.pastport.ui.theme.Gray50
 import com.hackaton.pastport.ui.theme.Main
 import com.hackaton.pastport.ui.theme.PastPortFontStyle
+import com.hackaton.pastport.ui.theme.Red
 import com.hackaton.pastport.ui.utils.noRippleClickable
 
 @Composable
@@ -63,8 +64,8 @@ private fun PastPortBasicTextField(
             .padding(
                 start = 16.dp,
                 end = 16.dp,
-                top = 10.dp,
-                bottom = 10.dp
+                top = 12.dp,
+                bottom = 12.dp
             )
     ) {
         BasicTextField(
@@ -86,13 +87,13 @@ private fun PastPortBasicTextField(
                 onNext = { focusManager.moveFocus(FocusDirection.Next) }
             ),
             visualTransformation = visualTransformation,
-            textStyle = PastPortFontStyle.medium16,
+            textStyle = PastPortFontStyle.medium14,
             cursorBrush = SolidColor(Main),
             decorationBox = { innerTextField ->
                 if (input.isEmpty()) {
                     Text(
                         text = hint,
-                        style = PastPortFontStyle.medium16,
+                        style = PastPortFontStyle.medium14,
                         color = Gray300
                     )
                 }
@@ -100,7 +101,7 @@ private fun PastPortBasicTextField(
             }
         )
         trailingIcon?.let {
-            Box(modifier = modifier.align(Alignment.CenterEnd)) { it() }
+            Box(modifier = Modifier.align(Alignment.CenterEnd)) { it() }
         }
     }
 }
@@ -143,8 +144,7 @@ private fun PastPortPasswordTextField(
         visualTransformation = if (isShowPassword) VisualTransformation.None else PasswordVisualTransformation(),
         trailingIcon = {
             Icon(
-                modifier = modifier
-                    .padding(4.dp)
+                modifier = Modifier
                     .size(20.dp)
                     .noRippleClickable {
                         isShowPassword = !isShowPassword
@@ -168,20 +168,15 @@ private fun PastPortBasicInput(
         verticalArrangement = Arrangement.spacedBy(2.dp)
     ) {
         Text(
-            modifier = modifier
-                .padding(
-                    bottom = 4.dp
-                ),
             text = label,
-            style = PastPortFontStyle.medium16
+            style = PastPortFontStyle.medium14
         )
         textField()
         Text(
             modifier = modifier
                 .padding(
                     start = 4.dp,
-                    top = 2.dp,
-                    bottom = 8.dp
+                    bottom = 4.dp
                 ),
             text = errorMessage,
             style = PastPortFontStyle.medium10,
@@ -225,11 +220,14 @@ fun PastPortPasswordInput(
     input: String,
     hint: String,
     imeAction: ImeAction,
+    errorMessage: String = "",
     onValueChange: (String) -> Unit
 ) {
     PastPortBasicInput(
         modifier = modifier,
         label = label,
+        errorMessage = errorMessage,
+        errorMessageColor = Red,
         textField = {
             PastPortPasswordTextField(
                 modifier = modifier,
