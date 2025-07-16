@@ -3,7 +3,6 @@ package com.hackaton.pastport
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -16,6 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.hackaton.pastport.navigation.AuthNavigation
+import com.hackaton.pastport.navigation.BottomNavigation
+import com.hackaton.pastport.navigation.MainNavigation
+import com.hackaton.pastport.navigation.NavigationRoutes
 import com.hackaton.pastport.ui.theme.PastPortTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,6 +33,13 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+private val bottomNav = listOf(
+    NavigationRoutes.HOME,
+    NavigationRoutes.MAP,
+    NavigationRoutes.QR,
+    NavigationRoutes.MY_PAGE
+)
+
 @Composable
 fun PastPortScreen(
     modifier: Modifier = Modifier
@@ -43,11 +52,19 @@ fun PastPortScreen(
 
     if (isAuthenticated) {
         Scaffold(
-            topBar = {},
-            bottomBar = {}
+            bottomBar = {
+                if (currentDestination in bottomNav) {
+                    BottomNavigation(navController = navController)
+                }
+            }
         ) {
             Box(modifier = modifier.padding(it)) {
-                // 메인 화면
+                MainNavigation(
+                    navController = navController,
+                    navToAuth = {
+                        isAuthenticated = false
+                    }
+                )
             }
         }
     } else {
