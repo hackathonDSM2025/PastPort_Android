@@ -48,11 +48,14 @@ import com.hackaton.pastport.ui.theme.Gray900
 import com.hackaton.pastport.ui.theme.Main
 import com.hackaton.pastport.ui.theme.PastPortFontStyle
 import com.hackaton.pastport.ui.theme.White
+import com.hackaton.pastport.ui.utils.noRippleClickable
 
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    viewModel: HomeViewModel = hiltViewModel()
+    viewModel: HomeViewModel = hiltViewModel(),
+    navToMyReports: () -> Unit,
+    navToMyMedal: () -> Unit
 ) {
     val totalMedal = 10
     val medalCount = viewModel.medalCount
@@ -95,7 +98,13 @@ fun HomeScreen(
                 MyActivity(
                     visitedCount = visitedCount,
                     medalCount = medalCount,
-                    reportCount = reportCount
+                    reportCount = reportCount,
+                    onMedalClick = {
+                        navToMyMedal()
+                    },
+                    onReportClick = {
+                        navToMyReports()
+                    }
                 )
             }
             Row(
@@ -211,9 +220,11 @@ private fun MyActivityItem(
     modifier: Modifier = Modifier,
     icon: Int,
     count: Int,
-    unitText: String
+    unitText: String,
+    onClick: () -> Unit
 ) {
     Row(
+        modifier = modifier.noRippleClickable { onClick() },
         horizontalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         Icon(
@@ -238,7 +249,9 @@ private fun MyActivity(
     modifier: Modifier = Modifier,
     visitedCount: Int,
     medalCount: Int,
-    reportCount: Int
+    reportCount: Int,
+    onMedalClick: () -> Unit,
+    onReportClick: () -> Unit
 ) {
     Column(
         modifier = modifier
@@ -279,7 +292,8 @@ private fun MyActivity(
             MyActivityItem(
                 icon = R.drawable.icon_visited,
                 count = visitedCount,
-                unitText = stringResource(R.string.home_my_activity_visited)
+                unitText = stringResource(R.string.home_my_activity_visited),
+                onClick = {}
             )
             VerticalDivider(
                 modifier = modifier.height(14.dp),
@@ -289,7 +303,8 @@ private fun MyActivity(
             MyActivityItem(
                 icon = R.drawable.icon_medal,
                 count = medalCount,
-                unitText = stringResource(R.string.home_my_activity_medal)
+                unitText = stringResource(R.string.home_my_activity_medal),
+                onClick = onMedalClick
             )
             VerticalDivider(
                 modifier = modifier.height(14.dp),
@@ -299,7 +314,8 @@ private fun MyActivity(
             MyActivityItem(
                 icon = R.drawable.icon_report,
                 count = reportCount,
-                unitText = stringResource(R.string.home_my_activity_report)
+                unitText = stringResource(R.string.home_my_activity_report),
+                onClick = onReportClick
             )
         }
     }
