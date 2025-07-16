@@ -1,9 +1,8 @@
 package com.hackaton.pastport.network.model.user
 
-data class GetBadgeResponse(
-    val success: Boolean,
-    val data: GetBadgeResponseData
-)
+import com.hackaton.pastport.network.model.BaseResponse
+
+typealias GetBadgeResponse = BaseResponse<GetBadgeResponseData>
 
 data class GetBadgeResponseData(
     val badgeCount: Int,

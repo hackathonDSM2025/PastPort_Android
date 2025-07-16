@@ -1,9 +1,8 @@
 package com.hackaton.pastport.network.model.auth
 
-data class DuplicateIdResponse(
-    val success: Boolean,
-    val data: DuplicateIdResponseData
-)
+import com.hackaton.pastport.network.model.BaseResponse
+
+typealias DuplicateIdResponse = BaseResponse<DuplicateIdResponseData>
 
 data class DuplicateIdResponseData(
     val available: Boolean,

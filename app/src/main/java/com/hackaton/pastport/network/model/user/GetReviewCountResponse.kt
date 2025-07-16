@@ -1,9 +1,8 @@
 package com.hackaton.pastport.network.model.user
 
-data class GetReviewCountResponse(
-    val success: Boolean,
-    val data: GetReviewCountResponseData
-)
+import com.hackaton.pastport.network.model.BaseResponse
+
+typealias  GetReviewCountResponse = BaseResponse<GetReviewCountResponseData>
 
 data class GetReviewCountResponseData(
     val reviewCount: Int
