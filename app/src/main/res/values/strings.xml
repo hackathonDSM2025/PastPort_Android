@@ -42,4 +42,6 @@
     <string name="mypage_my_report">나의 후기</string>
     <string name="mypage_language">언어 선택</string>
     <string name="show_detail">상세보기</string>
+
+    <string name="map_search_hint">지역, 문화유산을 검색해주세요</string>
 </resources>
