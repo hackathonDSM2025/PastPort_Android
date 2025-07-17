@@ -18,6 +18,10 @@ class MyReportViewModel @Inject constructor(
     var reportList by mutableStateOf<List<ReviewListItemData>>(listOf())
     var isLoading by mutableStateOf(false)
 
+    init {
+        getInfo()
+    }
+
      fun getInfo() {
         viewModelScope.launch {
             isLoading = true

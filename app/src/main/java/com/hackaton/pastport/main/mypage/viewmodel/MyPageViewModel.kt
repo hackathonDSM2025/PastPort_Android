@@ -17,6 +17,10 @@ class MyPageViewModel @Inject constructor(
     var username by mutableStateOf("")
     var isLoading by mutableStateOf(false)
 
+    init {
+        getInfo()
+    }
+
     fun getInfo() {
         viewModelScope.launch {
             isLoading = true

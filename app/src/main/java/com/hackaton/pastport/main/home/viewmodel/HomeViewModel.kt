@@ -46,4 +46,8 @@ class HomeViewModel @Inject constructor(
             isLoading = false
         }
     }
+
+    init {
+        getInfo()
+    }
 }

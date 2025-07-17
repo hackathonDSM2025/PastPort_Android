@@ -33,4 +33,8 @@ class MyMedalViewModel @Inject constructor(
             }
         }
     }
+
+    init {
+        getInfo()
+    }
 }

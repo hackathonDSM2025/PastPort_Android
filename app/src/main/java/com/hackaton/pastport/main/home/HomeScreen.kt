@@ -67,10 +67,6 @@ fun HomeScreen(
     val haeTaeSpeechText = stringResource(R.string.home_haetae_speech)
     val isLoading = viewModel.isLoading
 
-    LaunchedEffect(Unit) {
-        viewModel.getInfo()
-    }
-
     Box(
         modifier = modifier.fillMaxSize()
     ) {
