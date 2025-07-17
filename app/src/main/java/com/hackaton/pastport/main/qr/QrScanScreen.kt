@@ -24,6 +24,7 @@ import com.budiyev.android.codescanner.AutoFocusMode
 import com.budiyev.android.codescanner.CodeScanner
 import com.budiyev.android.codescanner.CodeScannerView
 import com.budiyev.android.codescanner.DecodeCallback
+import com.budiyev.android.codescanner.ErrorCallback
 import com.budiyev.android.codescanner.ScanMode
 import com.google.zxing.BarcodeFormat
 import com.hackaton.pastport.R
@@ -47,8 +48,10 @@ fun QrScanScreen(
             hasCameraPermission = granted
         }
     )
-    LaunchedEffect(key1 = true) {
-        launcher.launch(Manifest.permission.CAMERA)
+    LaunchedEffect(hasCameraPermission) {
+        if (!hasCameraPermission) {
+            launcher.launch(Manifest.permission.CAMERA)
+        }
     }
 
 
@@ -58,6 +61,7 @@ fun QrScanScreen(
         navToStory()
     } else if (isScanSuccess == false) {
         Toast.makeText(context, "QR코드 스캔에 실패했습니다.", Toast.LENGTH_SHORT).show()
+        isScanSuccess = null
     }
 
     Column (
@@ -80,6 +84,9 @@ fun QrScanScreen(
                         isFlashEnabled = false
                         decodeCallback = DecodeCallback { result ->
                             isScanSuccess = true
+                        }
+                        errorCallback = ErrorCallback { error ->
+                            isScanSuccess = false
                         }
                     }
                     scanner.startPreview()
