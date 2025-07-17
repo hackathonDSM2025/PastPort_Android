@@ -11,4 +11,8 @@ object NavigationRoutes {
 
     const val MY_MEDAL = "myMedal"
     const val MY_REPORT = "myReport"
+
+    const val STORY = "storyWebView"
+    const val WRITE_REPORT = "writeReport"
+
 }
