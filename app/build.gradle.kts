@@ -72,6 +72,7 @@ dependencies {
 
     implementation(libs.grid)
     implementation(libs.coil.compose)
+    implementation("com.github.yuriy-budiyev:code-scanner:2.3.2")
 
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
