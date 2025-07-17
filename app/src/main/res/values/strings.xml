@@ -41,4 +41,5 @@
     <string name="mypage_my_medal">나의 메달</string>
     <string name="mypage_my_report">나의 후기</string>
     <string name="mypage_language">언어 선택</string>
+    <string name="show_detail">상세보기</string>
 </resources>
