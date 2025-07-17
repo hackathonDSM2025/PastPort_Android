@@ -33,4 +33,10 @@ object ApiProvider {
     fun provideUserApi(retrofit: Retrofit): UserApi {
         return retrofit.create(UserApi::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun provideBadgeApi(retrofit: Retrofit): BadgeApi {
+        return retrofit.create(BadgeApi::class.java)
+    }
 }
