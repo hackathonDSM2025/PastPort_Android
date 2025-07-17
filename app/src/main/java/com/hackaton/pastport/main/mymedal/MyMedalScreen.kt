@@ -87,6 +87,7 @@ fun MyMedalScreen(
                                 viewModel.selectMedalDetail(
                                     medal = item
                                 )
+                                isShowDetail = true
                             }
                         )
                     }
@@ -98,10 +99,16 @@ fun MyMedalScreen(
                 modifier = modifier
                     .fillMaxSize()
                     .background(Black.copy(0.25f))
+                    .noRippleClickable {
+                        isShowDetail = false
+                    }
             ) {
                 BadgeDetailDialog(
                     modifier = modifier.align(Alignment.Center),
-                    data = selectedMedal
+                    data = selectedMedal,
+                    cancelClick = {
+                        isShowDetail = false
+                    }
                 )
             }
         }
@@ -157,9 +164,10 @@ fun MedalListItem(
 @Composable
 fun BadgeDetailDialog(
     modifier: Modifier = Modifier,
-    data: BadgeListItemData
+    data: BadgeListItemData,
+    cancelClick: () -> Unit
 ) {
-    Column (
+    Column(
         modifier = modifier
             .padding(
                 start = 40.dp,
@@ -178,7 +186,7 @@ fun BadgeDetailDialog(
             ),
         verticalArrangement = Arrangement.spacedBy(18.dp)
     ) {
-        Row (
+        Row(
             modifier = modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
@@ -192,6 +200,7 @@ fun BadgeDetailDialog(
                 color = Gray500
             )
             Icon(
+                modifier = modifier.noRippleClickable { cancelClick() },
                 imageVector = Icons.Filled.Clear,
                 tint = Gray600,
                 contentDescription = "cancel"
