@@ -139,7 +139,7 @@ fun MapScreen(
                                 "고인돌" -> R.drawable.medal_dolmen
                                 "하회마을" -> R.drawable.medal_hahoe
                                 "남한산성" -> R.drawable.medal_namhansanseong
-                                else -> 0
+                                else -> R.drawable.icon_medal
                             }
                         ),
                         contentDescription = null
