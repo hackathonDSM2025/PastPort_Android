@@ -1,4 +1,4 @@
-package com.hackaton.pastport.home
+package com.hackaton.pastport.main.home
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
@@ -35,10 +35,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import coil.compose.AsyncImage
 import com.cheonjaeung.compose.grid.SimpleGridCells
 import com.cheonjaeung.compose.grid.VerticalGrid
 import com.hackaton.pastport.R
-import com.hackaton.pastport.home.viewmodel.HomeViewModel
+import com.hackaton.pastport.main.home.viewmodel.HomeViewModel
 import com.hackaton.pastport.network.model.user.BadgeData
 import com.hackaton.pastport.ui.PastPortTopBar
 import com.hackaton.pastport.ui.theme.Gray200
@@ -66,10 +67,6 @@ fun HomeScreen(
     val haeTaeSpeechText = stringResource(R.string.home_haetae_speech)
     val isLoading = viewModel.isLoading
 
-    LaunchedEffect(Unit) {
-        viewModel.getInfo()
-    }
-
     Box(
         modifier = modifier.fillMaxSize()
     ) {
@@ -81,7 +78,7 @@ fun HomeScreen(
             Image(
                 modifier = modifier
                     .align(Alignment.Center)
-                    .fillMaxSize(),
+                   .fillMaxSize(),
                 painter = painterResource(R.drawable.home_background),
                 contentDescription = null,
                 contentScale = ContentScale.FillHeight
@@ -456,27 +453,13 @@ private fun LateMedal(
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             medalList.forEach { medal ->
-                val medalResource = getMedalResource(medal.heritageName)
-                if (medalResource != null) {
-                    Image(
-                        modifier = modifier.size(84.dp),
-                        painter = painterResource(medalResource),
-                        contentDescription = null
-                    )
-                }
+                AsyncImage(
+                    modifier = modifier.size(84.dp),
+                    model = medal.imageUrl,
+                    contentScale = ContentScale.FillWidth,
+                    contentDescription = null
+                )
             }
         }
-    }
-}
-
-private fun getMedalResource(name: String): Int? {
-    return when (name) {
-        "경복궁" -> R.drawable.medal_gyeongbok
-        "불국사" -> R.drawable.medal_bulguk
-        "고인돌" -> R.drawable.medal_dolmen
-        "하회마을" -> R.drawable.medal_hahoe
-        "남한산성" -> R.drawable.medal_namhansanseong
-        "탑골공원" -> R.drawable.medal_tapgol
-        else -> null
     }
 }

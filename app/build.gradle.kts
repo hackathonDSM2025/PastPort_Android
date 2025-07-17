@@ -71,6 +71,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation(libs.grid)
+    implementation(libs.coil.compose)
 
     implementation(libs.retrofit)
     implementation(libs.converter.gson)

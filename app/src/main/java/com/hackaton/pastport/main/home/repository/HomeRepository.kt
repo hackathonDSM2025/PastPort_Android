@@ -1,4 +1,4 @@
-package com.hackaton.pastport.home.repository
+package com.hackaton.pastport.main.home.repository
 
 import com.hackaton.pastport.network.UserApi
 import com.hackaton.pastport.network.model.user.GetBadgeResponse

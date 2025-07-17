@@ -4,7 +4,10 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.hackaton.pastport.home.HomeScreen
+import com.hackaton.pastport.main.home.HomeScreen
+import com.hackaton.pastport.main.mymedal.MyMedalScreen
+import com.hackaton.pastport.main.mypage.MyPageScreen
+import com.hackaton.pastport.main.myreport.MyReportScreen
 
 @Composable
 fun MainNavigation(
@@ -18,10 +21,9 @@ fun MainNavigation(
         composable(NavigationRoutes.HOME) {
             HomeScreen(
                 navToMyReports = {
-                    // 내 소감 화면으로 이동
-                },
+                    navController.navigate(NavigationRoutes.MY_REPORT)                },
                 navToMyMedal = {
-                    // 내 메달 화면으로 이동
+                    navController.navigate(NavigationRoutes.MY_MEDAL)
                 }
             )
         }
@@ -32,7 +34,31 @@ fun MainNavigation(
             // QR 화면
         }
         composable(NavigationRoutes.MY_PAGE) {
-            // 마이페이지 화면
+            MyPageScreen(
+                navToAuth = navToAuth,
+                navToMedal = {
+                    navController.navigate(NavigationRoutes.MY_MEDAL)
+                },
+                navToReport = {
+                    navController.navigate(NavigationRoutes.MY_REPORT)
+                },
+                navToLanguage = {}
+            )
+        }
+
+        composable(NavigationRoutes.MY_MEDAL) {
+            MyMedalScreen(
+                navToBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
+        composable(NavigationRoutes.MY_REPORT) {
+            MyReportScreen(
+                navToBack = {
+                    navController.popBackStack()
+                }
+            )
         }
     }
 }
