@@ -26,6 +26,7 @@ class MapViewModel @Inject constructor(
     }
 
     fun onSearch() {
+        if (keyword.isEmpty()) return
         viewModelScope.launch {
             isLoading = true
             val result = repository.searchHeritage(keyword)
