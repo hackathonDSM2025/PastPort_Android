@@ -54,10 +54,6 @@ fun MyMedalScreen(
 
     var isShowDetail by remember { mutableStateOf(false) }
 
-    if (isShowDetail) {
-
-    }
-
     Box(
         modifier = modifier.fillMaxSize()
     ) {
