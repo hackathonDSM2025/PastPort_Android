@@ -20,7 +20,7 @@ class MyMedalViewModel @Inject constructor(
 
     var isLoading by mutableStateOf(false)
 
-    fun selectedMedalDetail(medal: BadgeListItemData) {
+    fun selectMedalDetail(medal: BadgeListItemData) {
         selectedMedalDetail = medal
     }
 

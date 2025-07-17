@@ -88,7 +88,7 @@ fun MyMedalScreen(
                             earnedAt = item.earnedAt,
                             imageUrl = item.imageUrl,
                             onClick = {
-                                viewModel.selectedMedalDetail(
+                                viewModel.selectMedalDetail(
                                     medal = item
                                 )
                             }
