@@ -42,6 +42,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.hackaton.pastport.R
@@ -79,7 +80,7 @@ fun MapScreen(
 
     var isShowDetail by remember { mutableStateOf(false) }
 
-    Box (
+    Box(
         modifier = modifier.fillMaxSize()
     ) {
         Column(
@@ -147,18 +148,23 @@ fun MapScreen(
             }
         }
         if (isShowDetail) {
-            DetailDialog(
-                name = keyword,
-                description = detailText,
-                imageUrl = imageUrl,
-                onDismiss = {
+            Dialog(
+                onDismissRequest = {
                     isShowDetail = false
-                },
-                moveToMap = {
-                    isShowDetail = false
-                    openMapNavigation(context, latitude, longitude)
                 }
-            )
+            ) {
+                DetailDialog(
+                    name = keyword,
+                    description = detailText,
+                    imageUrl = imageUrl,
+                    onDismiss = {
+                        isShowDetail = false
+                    },
+                    moveToMap = {
+                        openMapNavigation(context, latitude, longitude)
+                    }
+                )
+            }
         }
     }
 }

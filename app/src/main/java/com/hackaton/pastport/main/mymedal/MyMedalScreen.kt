@@ -28,6 +28,7 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.hackaton.pastport.R
@@ -95,13 +96,10 @@ fun MyMedalScreen(
             }
         }
         if (isShowDetail) {
-            Box(
-                modifier = modifier
-                    .fillMaxSize()
-                    .background(Black.copy(0.25f))
-                    .noRippleClickable {
-                        isShowDetail = false
-                    }
+            Dialog(
+                onDismissRequest = {
+                    isShowDetail = false
+                }
             ) {
                 BadgeDetailDialog(
                     modifier = modifier.align(Alignment.Center),
