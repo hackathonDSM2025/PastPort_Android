@@ -130,7 +130,10 @@ fun MapScreen(
                             .absoluteOffset(
                                 x = offsetX,
                                 y = offsetY
-                            ),
+                            )
+                            .noRippleClickable {
+                                isShowDetail = true
+                            },
                         painter = painterResource(
                             when (keyword) {
                                 "경복궁" -> R.drawable.medal_gyeongbok
@@ -232,7 +235,12 @@ private fun SearchBar(
             modifier = modifier.align(Alignment.CenterEnd)
         ) {
             Icon(
-                modifier = modifier.size(20.dp),
+                modifier = modifier
+                    .size(20.dp)
+                    .noRippleClickable {
+                        onSearch()
+                        focusManager.clearFocus(true)
+                    },
                 imageVector = Icons.Outlined.Search,
                 tint = Gray400,
                 contentDescription = "search icon"
