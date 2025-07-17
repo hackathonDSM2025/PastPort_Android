@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import com.hackaton.pastport.main.home.HomeScreen
 import com.hackaton.pastport.main.mymedal.MyMedalScreen
 import com.hackaton.pastport.main.mypage.MyPageScreen
+import com.hackaton.pastport.main.myreport.MyReportScreen
 
 @Composable
 fun MainNavigation(
@@ -20,8 +21,7 @@ fun MainNavigation(
         composable(NavigationRoutes.HOME) {
             HomeScreen(
                 navToMyReports = {
-                    // 내 소감 화면으로 이동
-                },
+                    navController.navigate(NavigationRoutes.MY_REPORT)                },
                 navToMyMedal = {
                     navController.navigate(NavigationRoutes.MY_MEDAL)
                 }
@@ -40,7 +40,7 @@ fun MainNavigation(
                     navController.navigate(NavigationRoutes.MY_MEDAL)
                 },
                 navToReport = {
-                    // 내 소감 화면으로 이동
+                    navController.navigate(NavigationRoutes.MY_REPORT)
                 },
                 navToLanguage = {}
             )
@@ -48,6 +48,13 @@ fun MainNavigation(
 
         composable(NavigationRoutes.MY_MEDAL) {
             MyMedalScreen(
+                navToBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
+        composable(NavigationRoutes.MY_REPORT) {
+            MyReportScreen(
                 navToBack = {
                     navController.popBackStack()
                 }
