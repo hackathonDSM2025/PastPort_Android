@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.hackaton.pastport.main.home.HomeScreen
+import com.hackaton.pastport.main.map.MapScreen
 import com.hackaton.pastport.main.mymedal.MyMedalScreen
 import com.hackaton.pastport.main.mypage.MyPageScreen
 import com.hackaton.pastport.main.myreport.MyReportScreen
@@ -28,7 +29,7 @@ fun MainNavigation(
             )
         }
         composable(NavigationRoutes.MAP) {
-            // 지도 화면
+            MapScreen()
         }
         composable(NavigationRoutes.QR) {
             // QR 화면
