@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hackaton.pastport.main.mymedal.repository.MyMedalRepository
 import com.hackaton.pastport.network.model.badge.BadgeListItemData
-import com.hackaton.pastport.network.model.user.BadgeData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

@@ -14,5 +14,6 @@ data class BadgeListItemData(
     val imageUrl: String,
     val earnedAt: String,
     val heritageName: String,
-    val description: String
+    val description: String,
+    val heritageImageUrl: String
 )

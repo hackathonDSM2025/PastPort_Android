@@ -1,6 +1,5 @@
 package com.hackaton.pastport.main.mymedal
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -26,7 +25,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
@@ -43,7 +41,6 @@ import com.hackaton.pastport.ui.theme.Gray600
 import com.hackaton.pastport.ui.theme.PastPortFontStyle
 import com.hackaton.pastport.ui.theme.White
 import com.hackaton.pastport.ui.utils.noRippleClickable
-import com.hackaton.pastport.utils.getMedalResource
 
 @Composable
 fun MyMedalScreen(
@@ -89,6 +86,7 @@ fun MyMedalScreen(
                         MedalListItem(
                             name = item.heritageName,
                             earnedAt = item.earnedAt,
+                            imageUrl = item.imageUrl,
                             onClick = {
                                 viewModel.selectedMedalDetail(
                                     medal = item
@@ -119,10 +117,9 @@ fun MedalListItem(
     modifier: Modifier = Modifier,
     name: String,
     earnedAt: String,
+    imageUrl: String,
     onClick: () -> Unit
 ) {
-    val medalResource = getMedalResource(name) ?: 0
-
     Box(
         modifier = modifier
             .fillMaxWidth(),
@@ -130,10 +127,10 @@ fun MedalListItem(
         Row(
             modifier = modifier.align(Alignment.CenterStart)
         ) {
-            Image(
+            AsyncImage(
                 modifier = modifier.size(46.dp),
-                painter = painterResource(medalResource),
-                contentDescription = name
+                model = imageUrl,
+                contentDescription = null
             )
             Column {
                 Text(
@@ -166,8 +163,6 @@ fun BadgeDetailDialog(
     modifier: Modifier = Modifier,
     data: BadgeListItemData
 ) {
-    val medalResource = getMedalResource(data.heritageName) ?: 0
-
     Column (
         modifier = modifier
             .padding(
@@ -210,10 +205,10 @@ fun BadgeDetailDialog(
             modifier = modifier.fillMaxWidth()
         ) {
             AsyncImage(
-                model = data.imageUrl,
+                model = data.heritageImageUrl,
                 contentDescription = data.heritageName
             )
-            Image(
+            AsyncImage(
                 modifier = modifier
                     .padding(
                         start = 2.dp,
@@ -222,7 +217,7 @@ fun BadgeDetailDialog(
                     .align(Alignment.TopStart)
                     .size(80.dp)
                     .rotate(40f),
-                painter = painterResource(medalResource),
+                model = data.imageUrl,
                 contentDescription = data.heritageName
             )
         }

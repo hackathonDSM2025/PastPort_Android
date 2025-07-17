@@ -35,6 +35,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import coil.compose.AsyncImage
 import com.cheonjaeung.compose.grid.SimpleGridCells
 import com.cheonjaeung.compose.grid.VerticalGrid
 import com.hackaton.pastport.R
@@ -49,7 +50,6 @@ import com.hackaton.pastport.ui.theme.Main
 import com.hackaton.pastport.ui.theme.PastPortFontStyle
 import com.hackaton.pastport.ui.theme.White
 import com.hackaton.pastport.ui.utils.noRippleClickable
-import com.hackaton.pastport.utils.getMedalResource
 
 @Composable
 fun HomeScreen(
@@ -457,14 +457,12 @@ private fun LateMedal(
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             medalList.forEach { medal ->
-                val medalResource = getMedalResource(medal.heritageName)
-                if (medalResource != null) {
-                    Image(
-                        modifier = modifier.size(84.dp),
-                        painter = painterResource(medalResource),
-                        contentDescription = null
-                    )
-                }
+                AsyncImage(
+                    modifier = modifier.size(84.dp),
+                    model = medal.imageUrl,
+                    contentScale = ContentScale.FillWidth,
+                    contentDescription = null
+                )
             }
         }
     }
